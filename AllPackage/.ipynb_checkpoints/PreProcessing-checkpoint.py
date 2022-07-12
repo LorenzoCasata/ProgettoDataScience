@@ -153,7 +153,7 @@ def range_picchi(wave_peak):
     while i<len(wave_peak):
         
         x =  wave_peak[i]
-        wn_range_pic[i] = [x[0],x[-1]]
+        wn_range_pic[i] = [wave_peak[0],wave_peak[-1]]
         i = i+1
         
     return(wn_range_pic)     
