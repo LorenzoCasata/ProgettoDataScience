@@ -99,8 +99,10 @@ def norm_max_min(dataf, clmns):
 # solo il campione non normalizzato
 
 def trova_picchi(dataf, clmns):
-      
-    x,_ = find_peaks(dataf[clmns[1]],  prominence=11 )#width = 5, height = 0.05) #,
+     
+    prom = 11
+    
+    x,_ = find_peaks(dataf[clmns[1]],  prominence = prom )#width = 5, height = 0.05) #,
     
     j = 0
     numero_onda = np.empty(len(x))
@@ -119,7 +121,7 @@ def trova_picchi(dataf, clmns):
     i = 2
     while i<len(clmns):
         
-        x, _ = find_peaks(dataf[clmns[i]], prominence=11)
+        x, _ = find_peaks(dataf[clmns[i]], prominence = prom)
         
         
         j = 0
@@ -201,3 +203,18 @@ def smooth_filter_savgol(dataf, clmns):
     data_smth['WaveNum'] = dataf[clmns[0]]
    
     return(data_smth)
+
+
+
+#%%
+#definisco una semplice funzione di trasposizione per i df, comoda per alcune applciazioni.
+#Prende il df iniziale (anche preprocessato) e ritorna un df con indici i vari spettri e le colonne i numeri
+# d'onda. Di default crea un nuovo DF, ma può modificare quello vecchio
+
+def transpose_df(dataf, copy=True):
+    
+    df_trasp = dataf[dataf.columns[1:]].transpose(copy=True)
+    
+    df_trasp.columns = dataf[dataf.columns[0]]
+    
+    return(df_trasp)
