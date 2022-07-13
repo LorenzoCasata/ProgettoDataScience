@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import sklearn as skl
 import numpy as np
 import scipy 
-import PreProcessing as pp # pachetto con le funzioni per eseguire il preprocessing 
+import AllPackage.PreProcessing as pp # pachetto con le funzioni per eseguire il preprocessing 
 
 from scipy.signal import find_peaks
 from sklearn import preprocessing
