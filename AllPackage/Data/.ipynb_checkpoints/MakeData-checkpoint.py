@@ -71,11 +71,10 @@ def process_transpose(df):
 
 def process_transpose_all(initial_path = './Data/Initial/S_11x11' , final_path = './Data/PreProcessed/S_11x11'):
     
-    data_S1_bkg = pd.read_csv(initial_path+'/data_S1_bkg.csv', index_col = 0)
-    data_S1 = pd.read_csv(initial_path+'/data_S1.csv', index_col = 0)
-    data_S2_bkg = pd.read_csv(initial_path+'/data_S2_bkg.csv', index_col = 0)
-    data_S2 = pd.read_csv(initial_path+'/data_S2.csv', index_col = 0)
-    
+    data_S1_bkg = pd.read_csv(initial_path+'/data_S1_bkg.csv')
+    data_S1 = pd.read_csv(initial_path+'/data_S1.csv')
+    data_S2_bkg = pd.read_csv(initial_path+'/data_S2_bkg.csv')
+    data_S2 = pd.read_csv(initial_path+'/data_S2.csv')
     
     data_S1_bkg_smooth = smooth_filter_savgol(data_S1_bkg,data_S1_bkg.columns)
     data_S1_bkg_smooth = norm_max_min(data_S1_bkg_smooth,data_S1_bkg_smooth.columns)

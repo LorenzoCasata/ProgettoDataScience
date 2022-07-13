@@ -61,9 +61,9 @@ def make_PCA_all(n_components=0, initial_path = './Data/PreProcessed/S_11x11', f
     pca_S2_bkg_df = pd.DataFrame(pca_S2_bkg, columns = columns, index = index)
     pca_S2_df = pd.DataFrame(pca_S2, columns = columns, index = index)
     
-    pca_S1_bkg_df.to_csv(finalpath+'/pca_S1_bkg.csv', index = False)
-    pca_S1_df.to_csv(finalpath+'/pca_S1.csv', index = False)
-    pca_S2_bkg_d.to_csv(finalpath+'/pca_S2_bkg.csv', index = False)
-    pca_S2_df.to_csv(finalpath+'/pca_S2.csv', index = False)
+    pca_S1_bkg_df.to_csv(final_path+'/pca_S1_bkg.csv', index = False)
+    pca_S1_df.to_csv(final_path+'/pca_S1.csv', index = False)
+    pca_S2_bkg_df.to_csv(final_path+'/pca_S2_bkg.csv', index = False)
+    pca_S2_df.to_csv(final_path+'/pca_S2.csv', index = False)
     
     return()
