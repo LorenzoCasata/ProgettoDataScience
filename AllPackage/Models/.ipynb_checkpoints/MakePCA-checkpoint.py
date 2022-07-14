@@ -79,6 +79,7 @@ def make_PCA_all(n_components=0, initial_path = './Data/PreProcessed/S_11x11', f
 # data = dataframe preprocessato e trasposto su cui valutare la pca
 # directory = path dove salvare i plot ottenuti
 # nome = nome del file con cui salvare il plot 
+# silent = decidi se mostrare o meno i grafici, default = true
 
 def plot_var_PC(data, name, directory = './Reports/Plots/PCA', silent = True):
                 
@@ -87,25 +88,25 @@ def plot_var_PC(data, name, directory = './Reports/Plots/PCA', silent = True):
     
     total_var = []
     
-    for i in range(1,10):
+    for i in range(1,11):
         
         [temp, pca] = make_PCA(data,i)
         total_var.append(pca.explained_variance_ratio_.sum())
 
     
-    PCs = [x for x in range(1,10)]
+    PCs = [x for x in range(1,11)]
     ax.bar(PCs,total_var)
     plt.axhline(y=0.85 ,color='r')
     
     ax.set_title(name);
-    ax.set_ylabel('Explained variance ratio')
-    ax.set_xlabel('number of PCs')
-    ax.set_xticks(np.arange(1,10,1))
-    ax.set_yticks(np.arange(0,1,0.05))
+    ax.set_ylabel('Total variance')
+    ax.set_xlabel('number of principal components')
+    ax.set_xticks(np.arange(1,11,1))
+    ax.set_yticks(np.arange(0,1.05,0.05))
 
     fig.savefig(directory+'/'+name+'.pdf');
 
-    if(not(silent))
+    if(not(silent)):
         plt.show()
     
     
@@ -127,7 +128,7 @@ def plot_var_PC_all( data=None, names=[], directory='./Reports/Plots/PCA', initi
         data_S2_bkg_transp = pd.read_csv(initial_path+'/data_S2_bkg_transp.csv', index_col = 0)
         data_S2_transp = pd.read_csv(initial_path+'/data_S2_transp.csv', index_col = 0) 
         
-        data_list = [data_S1_bkg_transp, data_S1_transp, data_S2_bkg_transp,data_S2_transp]
+        data_list = [data_S1_bkg_transp, data_S1_transp, data_S2_bkg_transp, data_S2_transp]
         
     else:
         
@@ -140,26 +141,26 @@ def plot_var_PC_all( data=None, names=[], directory='./Reports/Plots/PCA', initi
     
     for j in range(0,len(data_list)):
 
-        for i in range(1,10):
+        for i in range(1,11):
 
             [temp, pca]=make_PCA(data_list[j],i)
             total_var.append(pca.explained_variance_ratio_.sum())
     
-    PCs = [x for x in range(1,10)]
+    PCs = [x for x in range(1,11)]
         
     for i in range(len(data_list)):
         
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
         
-        ax.bar(PCs,total_var[i*9:(i+1)*9])
+        ax.bar(PCs,total_var[i*10:(i+1)*10])
         plt.axhline(y=0.85 ,color='r')
 
         ax.set_title(names[i]);
         ax.set_ylabel('Explained variance ratio')
         ax.set_xlabel('number of PCs')
-        ax.set_xticks(np.arange(1,10,1))
-        ax.set_yticks(np.arange(0,1,0.05))
+        ax.set_xticks(np.arange(1,11,1))
+        ax.set_yticks(np.arange(0,1.05,0.05))
         fig.savefig(directory+'/'+names[i]+'.pdf');
         
         if(not(silent)):
