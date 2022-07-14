@@ -52,7 +52,7 @@ def ricostruzion_grid_cluster(cluster, directory, name):
     ax.set_yticks(y)
     ax.set_xticks(x)
 
-    fig.colorbar(pcm, ax = ax, boundaries=[-1, 0 ,1 ,2, 3])
+    fig.colorbar(pcm, ax = ax, boundaries=[-1, 0 ,1 ,2, 3,4])
     plt.show()
     
     fig.savefig(directory+'.pdf');
