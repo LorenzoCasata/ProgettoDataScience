@@ -119,7 +119,7 @@ def trova_picchi(dataf, clmns):
     i = 2
     while i<len(clmns):
         
-        x, _ = find_peaks(dataf[clmns[i]], prominence=11)
+        x, _ = find_peaks(dataf[clmns[i]], prominence = prom)
         
         
         j = 0
@@ -136,6 +136,8 @@ def trova_picchi(dataf, clmns):
         
         i = i+1
     
+
+
     return(peaks_Wn, peaks_Int)
 
 
