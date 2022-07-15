@@ -103,6 +103,7 @@ def trova_picchi(dataf, clmns):
     prom = 11
     
     x,_ = find_peaks(dataf[clmns[1]],  prominence=prom )#width = 5, height = 0.05) #,
+
     
     j = 0
     numero_onda = np.empty(len(x))
