@@ -100,7 +100,10 @@ def norm_max_min(dataf, clmns):
 
 def trova_picchi(dataf, clmns):
       
-    x,_ = find_peaks(dataf[clmns[1]],  prominence=11 )#width = 5, height = 0.05) #,
+    prom = 11
+    
+    x,_ = find_peaks(dataf[clmns[1]],  prominence=prom )#width = 5, height = 0.05) #,
+
     
     j = 0
     numero_onda = np.empty(len(x))
@@ -119,7 +122,7 @@ def trova_picchi(dataf, clmns):
     i = 2
     while i<len(clmns):
         
-        x, _ = find_peaks(dataf[clmns[i]], prominence=11)
+        x, _ = find_peaks(dataf[clmns[i]], prominence=prom)
         
         
         j = 0
