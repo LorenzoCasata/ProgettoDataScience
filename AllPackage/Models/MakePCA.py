@@ -6,7 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
 #%%
 # funzione che fa la PCA di un set di dati
 # df = dataframe, con colonne numeri d' onda, su cui eseguire la PCA
