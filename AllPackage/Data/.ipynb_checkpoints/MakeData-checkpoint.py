@@ -29,19 +29,52 @@ from AllPackage.Data.PreProcessing import *
 def build_S11x11_df(initial_path='./Data/Raw/S_11x11', final_path='./Data/Initial/S_11x11'):
     
     namefiles = [f for f in os.listdir(initial_path) if os.path.isfile(os.path.join(initial_path, f))]
+    namefiles = ['S1_bkg_mapA_11x11.txt', 'S1_mapA_11x11.txt', 'S2_bkg_mapA_11x11.txt', 'S2_mapA_11x11.txt']
     columns = ['WaveNum']+[f'row{k}_point{i}' for k in range(1,12) for i in range(1,12)]
     
     data_S1_bkg = pd.read_csv(initial_path+'/'+namefiles[0], delim_whitespace=True,names = columns)
     data_S1 = pd.read_csv(initial_path+'/'+namefiles[1], delim_whitespace=True,names = columns)
     data_S2_bkg = pd.read_csv(initial_path+'/'+namefiles[2], delim_whitespace=True,names = columns)
     data_S2 = pd.read_csv(initial_path+'/'+namefiles[3], delim_whitespace=True,names = columns)
-        
+                
     data_S1_bkg.to_csv(final_path+'/data_S1_bkg.csv',index = False)
     data_S1.to_csv(final_path+'/data_S1.csv',index = False)
     data_S2.to_csv(final_path+'/data_S2.csv',index = False)
     data_S2_bkg.to_csv(final_path+'/data_S2_bkg.csv',index = False)
     
     return(data_S1_bkg, data_S1, data_S2_bkg, data_S2)
+
+
+
+#%%
+# funzione che dai dati raw per gli spettri puri crea un pandas dataframe 
+# initial_path = percorsi dei dati raw in csv
+# final_path = percorsi dei dati in csv del nuovo DF
+# i percorsi di default sono quelli della cartella del progetto
+# return il dataframe degli spettri puri 
+
+def build_S_ref_df(initial_path='./Data/Raw/S_ref', final_path='./Data/Initial/S_ref'):
+
+    #preparo i nomi per gli spettri puri
+    with open('./Data/Raw/Labels/BANK_LIST.dat') as f:
+        nomi = f.readlines()    
+    for i in range(len(nomi)):
+        nomi[i]=nomi[i].removesuffix('\n')
+        nomi[i]=nomi[i].removeprefix('*')
+        
+    lista_spettri_puri = [pd.read_csv(initial_path+'/'+nomi[i], delim_whitespace=True, names=[ 'WavwNum_'+nomi[i].removesuffix('.txt') , 'value_'+nomi[i].removesuffix('.txt') ]) for i in range(len(nomi))]
+    
+    for i in range(len(nomi)):
+            
+        lista_spettri_puri[i].to_csv(final_path+'/'+nomi[i].removesuffix('.txt')+'.csv',index = False)
+            
+            
+    df_spettri_puri = pd.concat(lista_spettri_puri, axis=1)
+
+    df_spettri_puri.to_csv(final_path+'/data_S_ref.csv',index = False)
+
+    return(df_spettri_puri)
+
 
 
 
