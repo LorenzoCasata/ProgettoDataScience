@@ -23,10 +23,6 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 from matplotlib.ticker import MaxNLocator
 from sklearn.decomposition import PCA
 from sklearn.cluster import DBSCAN
-<<<<<<< HEAD
-from sklearn.cluster import KMeans
-=======
->>>>>>> 5922465a24042e4cced0d985fc3c12aca5d021d7
 
 
 #%%
@@ -138,28 +134,4 @@ def clustering(data, directory, settings, nome, pca_plot ):
 
 
 
-<<<<<<< HEAD
     ricostruzion_grid_cluster(cluster, directory, nome, palette, lista_cluster)
-    
-    
-    
-#%%
-# Elbow method per valutare numero ottimale di cluster
-# data = dati sui cui eseguire il plot
-def plot_elbow_kmeans(data, name):
-    
-    distorsions = []
-    for k in range(2, 20):
-        kmeans = KMeans(n_clusters=k)
-        kmeans.fit(data)
-        distorsions.append(kmeans.inertia_)
-
-    fig = plt.figure(figsize=(5, 5))
-    plt.plot(range(2, 20), distorsions)
-    plt.grid(True)
-    plt.title('Elbow curve per '+'name')
-    plt.set_xlabel('Numero di cluster')
-    plt.set_ylabel('Sum within cluster distance')
-=======
-    ricostruzion_grid_cluster(cluster, directory, nome, palette, lista_cluster)
->>>>>>> 5922465a24042e4cced0d985fc3c12aca5d021d7
